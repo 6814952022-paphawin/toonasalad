@@ -35,7 +35,14 @@ function WishDetailsPage({ onBack }) {
     event.preventDefault(); setAuthBusy(true); setAuthError('');
     try {
       const response = await fetch(`${API}/auth/${authMode}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(authForm) });
-      const body = await response.json();
+      const responseText = await response.text();
+      let body;
+      try {
+        body = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        throw new Error(`Authentication API returned HTTP ${response.status} with a non-JSON response. Check the Vercel Function logs.`);
+      }
+      if (!responseText.trim()) throw new Error(`Authentication API returned HTTP ${response.status} with an empty response. Check the Vercel Function logs.`);
       if (!response.ok) throw new Error(body.message || 'Authentication failed');
       localStorage.setItem('wish-auth-token', body.token); localStorage.setItem('wish-auth-user', JSON.stringify(body.user));
       setAuthUser(body.user); setAuthMode(''); setAuthForm({ email: '', password: '' });

@@ -10,6 +10,9 @@ const errorHandler = (err, req, res, next) => {
     if (err.name === "CastError") {
         return res.status(400).json({ message: `Invalid id: ${err.value}` });
     }
+    if (err.name === "MongooseServerSelectionError" || err.name === "MongoServerSelectionError") {
+        return res.status(503).json({ message: "MongoDB is unavailable. Check MONGO_URI and Atlas Network Access." });
+    }
     res.status(500).json({ message: err.message || "Server error" });
 };
 

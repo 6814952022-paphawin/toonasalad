@@ -5,7 +5,7 @@ React/Vite frontend and Express API deployed together on Vercel. Wish histories 
 ## Deploy to Vercel
 
 1. Push this repository to GitHub and import it in Vercel.
-2. Set the Vercel **Root Directory** to `toonasalad` (the folder containing this file), with **Include source files outside of the Root Directory** turned off.
+2. Keep the Vercel **Root Directory** at the repository root (`./`, the default). This repository itself is the `toonasalad` project; there is no nested `toonasalad` folder.
 3. In Project Settings → Environment Variables, add `MONGO_URI` (MongoDB Atlas connection string) and `AUTH_SECRET` (a long random value). Create a Vercel Blob store from Storage and connect it to this project; Vercel supplies `BLOB_READ_WRITE_TOKEN`.
 4. In MongoDB Atlas, add a database user and allow Vercel's outbound connections in Network Access. Never commit real connection strings or tokens.
 5. Deploy. Vercel runs `npm run build`, serves `client/dist`, and sends `/api/*` to the Express function in `api/[...path].js`.
