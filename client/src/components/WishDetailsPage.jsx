@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { upload } from '@vercel/blob/client';
-import BackgroundLayer from './BackgroundLayer.jsx';
 import WishDashboardHeader from './WishDashboardHeader.jsx';
 import WishAnalyticsSection from './WishAnalyticsSection.jsx';
 import WishBreakdownSection from './WishBreakdownSection.jsx';
@@ -17,7 +16,7 @@ const getPlayerId = () => {
   return id;
 };
 
-function WishDetailsPage({ onBack }) {
+function WishDetailsPage({ onBack, theme = 'light', onToggleTheme, initialAuthMode = '' }) {
   const [playerId] = useState(getPlayerId);
   const [data, setData] = useState(null);
   const [form, setForm] = useState(blank);
@@ -26,7 +25,7 @@ function WishDetailsPage({ onBack }) {
   const [error, setError] = useState('');
   const [banner, setBanner] = useState('character');
   const [authUser, setAuthUser] = useState(() => { try { return JSON.parse(localStorage.getItem('wish-auth-user') || 'null'); } catch { return null; } });
-  const [authMode, setAuthMode] = useState('');
+  const [authMode, setAuthMode] = useState(initialAuthMode);
   const [authForm, setAuthForm] = useState({ email: '', password: '' });
   const [authError, setAuthError] = useState('');
   const [authBusy, setAuthBusy] = useState(false);
@@ -97,12 +96,11 @@ function WishDetailsPage({ onBack }) {
 
   const cards = useMemo(() => banners.map(([key, title]) => ({ key, title, ...(data?.banners?.[key] || {}) })), [data]);
   return (
-    <main className="wish-dashboard-page">
-      <BackgroundLayer />
+    <main className="wish-dashboard-page" data-theme={theme}>
       <div className="wish-dashboard-content">
-        <WishDashboardHeader onBack={onBack} user={authUser} onAuth={(mode) => { setAuthMode(mode); setAuthError(''); }} onLogout={() => { localStorage.removeItem('wish-auth-token'); localStorage.removeItem('wish-auth-user'); setAuthUser(null); }} />
+        <WishDashboardHeader onBack={onBack} theme={theme} onToggleTheme={onToggleTheme} user={authUser} onAuth={(mode) => { setAuthMode(mode); setAuthError(''); }} onLogout={() => { localStorage.removeItem('wish-auth-token'); localStorage.removeItem('wish-auth-user'); setAuthUser(null); }} />
         {authMode && <div className="wish-auth-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setAuthMode(''); }}><section className="wish-auth-dialog" role="dialog" aria-modal="true" aria-labelledby="wish-auth-title"><button className="wish-auth-close" type="button" aria-label="Close" onClick={() => setAuthMode('')}>×</button><p className="dashboard-eyebrow">WISH COUNTER ACCOUNT</p><h2 id="wish-auth-title">{authMode === 'register' ? 'Create your account' : 'Welcome back'}</h2><form onSubmit={submitAuth}><label>Email<input required type="email" autoComplete="email" maxLength="254" value={authForm.email} onChange={(event) => setAuthForm({ ...authForm, email: event.target.value })} /></label><label>Password<input required type="password" autoComplete={authMode === 'register' ? 'new-password' : 'current-password'} minLength="8" maxLength="128" value={authForm.password} onChange={(event) => setAuthForm({ ...authForm, password: event.target.value })} /></label>{authError && <p className="wish-feedback wish-error" role="alert">{authError}</p>}<button className="wish-auth-button wish-auth-primary" disabled={authBusy}>{authBusy ? 'Please wait…' : authMode === 'register' ? 'Sign up' : 'Log in'}</button></form><button className="wish-auth-switch" type="button" onClick={() => { setAuthMode(authMode === 'register' ? 'login' : 'register'); setAuthError(''); }}>{authMode === 'register' ? 'Already have an account? Log in' : 'New here? Create an account'}</button></section></div>}
-        <section className="wish-summary-grid" aria-label="Wish pity summary">
+        <section className="wish-summary-grid" id="wish-overview" aria-label="Wish pity summary">
           {cards.map((card) => (
             <article className="wish-summary-card" key={card.key}>
               <div className="summary-card-heading"><h2>{card.title}</h2><span className="summary-menu-mark">✦</span></div>
@@ -114,7 +112,7 @@ function WishDetailsPage({ onBack }) {
         </section>
         <WishAnalyticsSection data={data} />
         <WishBreakdownSection data={data} />
-        <section className="wish-chart-card wish-tools-card">
+        <section className="wish-chart-card wish-tools-card" id="wish-manage">
           <div className="wish-section-heading"><div><p className="dashboard-eyebrow">YOUR WISH HISTORY</p><h2>Import or add wishes</h2></div><label className="dashboard-tool import-button">Import JSON<input type="file" accept="application/json,.json" onChange={importFile} /></label></div>
           <p className="wish-helper">Sign in to upload a JSON file directly to Vercel Blob. Files are limited to 10 MB and the Blob URL is public. The records are then imported into your wish history.</p>
           <form className="wish-entry-form" onSubmit={addManual}>
@@ -128,7 +126,7 @@ function WishDetailsPage({ onBack }) {
           {error && <p className="wish-feedback wish-error" role="alert">{error} — start the API server and check its database connection.</p>}
           {message && <p className="wish-feedback" role="status">{message}</p>}
         </section>
-        <section className="wish-chart-card wish-records-card">
+        <section className="wish-chart-card wish-records-card" id="wish-records">
           <div className="wish-section-heading"><h2>Pull records</h2><label className="wish-filter">Banner<select value={banner} onChange={(e) => setBanner(e.target.value)}>{banners.map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label></div>
           {!data ? <p className="wish-helper">Loading wish history…</p> : rows.length === 0 ? <p className="wish-helper">No wishes in this banner yet. Import history or add a wish above.</p> : <div className="breakdown-table-wrap"><table className="wish-record-table"><thead><tr><th>Item</th><th>Rarity</th><th>Type</th><th>Date</th></tr></thead><tbody>{rows.map((wish, index) => <tr key={wish.wishId || `${wish.name}-${wish.wishedAt}-${index}`}><td>{wish.name}</td><td className={wish.rarity === 5 ? 'wish-tone-gold' : wish.rarity === 4 ? 'wish-tone-violet' : ''}>{'★'.repeat(wish.rarity)}</td><td>{wish.itemType}</td><td>{new Date(wish.wishedAt).toLocaleString()}</td></tr>)}</tbody></table></div>}
         </section>

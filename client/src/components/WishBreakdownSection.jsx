@@ -31,7 +31,7 @@ function WishBreakdownSection({ data }) {
   const totalPulls = data?.totalPulls || 0;
 
   return (
-    <section className="wish-breakdown-section" aria-label={dashboard.breakdownTitle}>
+    <section className="wish-breakdown-section" id="wish-breakdown" aria-label={dashboard.breakdownTitle}>
       <div className="wish-section-heading breakdown-heading"><div><p className="dashboard-eyebrow">{dashboard.breakdownEyebrow}</p><h2>{dashboard.breakdownTitle}</h2></div><span className="sample-data-label">{totalPulls ? 'YOUR WISH DATA' : 'NO WISH DATA'}</span></div>
       <div className="breakdown-grid">
         {cards.map((card) => <article className="breakdown-card" key={card.key}>

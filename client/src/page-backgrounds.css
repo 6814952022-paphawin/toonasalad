@@ -1,0 +1,157 @@
+/* Soft ambient color and a very fine grid add depth without competing with content. */
+.landing-page:not(.tier-page) {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 11% 8%, rgba(190, 173, 232, .24), transparent 32%),
+    radial-gradient(ellipse at 91% 26%, rgba(238, 199, 187, .17), transparent 30%),
+    radial-gradient(ellipse at 63% 77%, rgba(192, 205, 236, .13), transparent 34%),
+    linear-gradient(rgba(117, 99, 158, .022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(117, 99, 158, .022) 1px, transparent 1px);
+  background-size: auto, auto, auto, 68px 68px, 68px 68px;
+}
+.landing-page:not(.tier-page)[data-theme="dark"] {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 11% 8%, rgba(126, 103, 176, .19), transparent 34%),
+    radial-gradient(ellipse at 91% 26%, rgba(124, 74, 91, .12), transparent 31%),
+    radial-gradient(ellipse at 63% 77%, rgba(75, 92, 134, .12), transparent 35%),
+    linear-gradient(rgba(201, 183, 239, .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 183, 239, .025) 1px, transparent 1px);
+  background-size: auto, auto, auto, 68px 68px, 68px 68px;
+}
+
+.tier-page {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 84% 4%, rgba(183, 164, 225, .2), transparent 30%),
+    radial-gradient(ellipse at 8% 38%, rgba(218, 190, 190, .13), transparent 32%),
+    radial-gradient(ellipse at 73% 79%, rgba(181, 201, 228, .12), transparent 35%),
+    linear-gradient(rgba(117, 99, 158, .018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(117, 99, 158, .018) 1px, transparent 1px);
+  background-size: auto, auto, auto, 72px 72px, 72px 72px;
+}
+.tier-page[data-theme="dark"] {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 84% 4%, rgba(126, 103, 176, .2), transparent 31%),
+    radial-gradient(ellipse at 8% 38%, rgba(117, 69, 84, .12), transparent 33%),
+    radial-gradient(ellipse at 73% 79%, rgba(71, 92, 132, .13), transparent 35%),
+    linear-gradient(rgba(201, 183, 239, .023) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 183, 239, .023) 1px, transparent 1px);
+  background-size: auto, auto, auto, 72px 72px, 72px 72px;
+}
+
+.wish-dashboard-page {
+  background-image:
+    radial-gradient(ellipse at 86% 0%, rgba(201, 184, 235, .7), transparent 36%),
+    radial-gradient(ellipse at -5% 45%, rgba(239, 204, 192, .38), transparent 35%),
+    radial-gradient(ellipse at 67% 89%, rgba(186, 203, 230, .24), transparent 37%),
+    linear-gradient(rgba(117, 99, 158, .022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(117, 99, 158, .022) 1px, transparent 1px);
+  background-size: auto, auto, auto, 68px 68px, 68px 68px;
+}
+.wish-dashboard-page[data-theme="dark"] {
+  background-image:
+    radial-gradient(ellipse at 86% 0%, rgba(112, 89, 157, .36), transparent 37%),
+    radial-gradient(ellipse at -5% 45%, rgba(110, 67, 79, .2), transparent 36%),
+    radial-gradient(ellipse at 67% 89%, rgba(65, 79, 118, .2), transparent 38%),
+    linear-gradient(rgba(201, 183, 239, .024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 183, 239, .024) 1px, transparent 1px);
+  background-size: auto, auto, auto, 68px 68px, 68px 68px;
+}
+
+/* A contained glass navbar, styled like the hero character caption. */
+.landing-page .topbar {
+  box-sizing: border-box;
+  height: 78px;
+  margin: 16px auto 0;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-bottom: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .46);
+  box-shadow: 0 12px 40px rgba(59, 44, 95, .06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.landing-page[data-theme="dark"] .topbar {
+  border-color: rgba(237, 228, 255, .15);
+  background: rgba(45, 40, 56, .7);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .2);
+}
+.landing-page .topbar .theme-toggle,
+.landing-page .topbar .profile-button {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .37);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: none;
+}
+.landing-page .topbar .theme-toggle:hover,
+.landing-page .topbar .profile-button:hover {
+  border-color: var(--purple);
+  background: rgba(137, 119, 198, .1);
+}
+.landing-page .topbar .theme-toggle > span:first-child,
+.landing-page .topbar .profile-icon {
+  color: inherit;
+  font-size: inherit;
+}
+.landing-page[data-theme="dark"] .topbar .theme-toggle,
+.landing-page[data-theme="dark"] .topbar .profile-button {
+  background: rgba(255, 255, 255, .045);
+}
+@media (max-width: 900px) {
+  .landing-page .topbar { width: calc(100% - 52px); }
+}
+@media (max-width: 620px) {
+  .landing-page .topbar {
+    width: calc(100% - 36px);
+    height: 67px;
+    margin-top: 10px;
+    padding: 0 12px;
+  }
+  .landing-page .topbar .theme-toggle,
+  .landing-page .topbar .profile-button {
+    min-height: 39px;
+    padding: 0 11px;
+    font-size: 12px;
+  }
+  .landing-page .topbar .main-nav {
+    top: calc(100% + 8px);
+    right: 8px;
+    left: 8px;
+    padding: 11px 0;
+    border: 1px solid rgba(255, 255, 255, .72);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .78);
+    box-shadow: 0 12px 35px rgba(59, 44, 95, .1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .landing-page[data-theme="dark"] .topbar .main-nav {
+    border-color: rgba(237, 228, 255, .15);
+    background: rgba(35, 31, 44, .88);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .24);
+  }
+}
+
+/* Enlarge the hero artwork from its existing bottom anchor and shift it left. */
+@media (min-width: 901px) {
+  .landing-page:not(.tier-page) .hero-character {
+    left: 43%;
+    height: 120%;
+    max-width: 125%;
+  }
+}
+@media (min-width: 621px) and (max-width: 900px) {
+  .landing-page:not(.tier-page) .hero-character {
+    left: 46%;
+    height: 120%;
+    max-width: 132%;
+  }
+}

@@ -21,7 +21,7 @@ function WishAnalyticsSection({ data }) {
   const yLabels = [1, 0.75, 0.5, 0.25, 0].map((ratio) => Math.ceil(chartMax * ratio));
 
   return (
-    <section className="wish-analytics-grid" aria-label={dashboard.analyticsLabel}>
+    <section className="wish-analytics-grid" id="wish-analytics" aria-label={dashboard.analyticsLabel}>
       <article className="wish-chart-card">
         <div className="wish-section-heading"><div><p className="dashboard-eyebrow">{dashboard.chartEyebrow}</p><h2>{dashboard.chartTitle}</h2></div><span className="chart-period">LAST 18 MONTHS</span></div>
         <div className="wish-chart">

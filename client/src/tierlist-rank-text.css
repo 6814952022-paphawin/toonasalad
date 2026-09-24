@@ -1,0 +1,226 @@
+.tier-rank-cell .tier-rank-label {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  margin: auto;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  font-size: 19px;
+  line-height: 1.2;
+  text-shadow: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-text-stroke: 0 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.rank-ss .tier-rank-cell .tier-rank-label { color: #967539; }
+.rank-s .tier-rank-cell .tier-rank-label { color: #8064b3; }
+.rank-aplus .tier-rank-cell .tier-rank-label { color: #7379a1; }
+.rank-a .tier-rank-cell .tier-rank-label { color: #64889a; }
+.rank-b .tier-rank-cell .tier-rank-label { color: #718b6b; }
+.rank-c .tier-rank-cell .tier-rank-label { color: #9c8c5e; }
+.rank-d .tier-rank-cell .tier-rank-label { color: #a17971; }
+
+.tier-page[data-theme="dark"] .rank-ss .tier-rank-cell .tier-rank-label { color: #edd29c; }
+.tier-page[data-theme="dark"] .rank-s .tier-rank-cell .tier-rank-label { color: #d3b9f5; }
+.tier-page[data-theme="dark"] .rank-aplus .tier-rank-cell .tier-rank-label { color: #c3c5ef; }
+.tier-page[data-theme="dark"] .rank-a .tier-rank-cell .tier-rank-label { color: #a9d0dc; }
+.tier-page[data-theme="dark"] .rank-b .tier-rank-cell .tier-rank-label { color: #bad2af; }
+.tier-page[data-theme="dark"] .rank-c .tier-rank-cell .tier-rank-label { color: #e3d39d; }
+.tier-page[data-theme="dark"] .rank-d .tier-rank-cell .tier-rank-label { color: #e2b4ad; }
+
+/* The rank remains plain colored text; all rank badges and text treatments are removed. */
+.tier-rank-cell .tier-rank-label,
+.tier-page[data-theme="dark"] .tier-rank-cell .tier-rank-label {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-text-stroke: 0 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* Square tier board cells, separated rank column, and a boxed column header. */
+.tier-board { row-gap: 12px; }
+.tier-board-header,
+.tier-row-shell {
+  grid-template-columns: 76px repeat(3, minmax(0, 1fr));
+  column-gap: 16px;
+}
+.tier-grid-heading,
+.tier-rank-cell {
+  border-right: 1px solid rgba(111, 95, 152, .18);
+  margin-right: 2px;
+}
+.tier-page[data-theme="dark"] .tier-grid-heading,
+.tier-page[data-theme="dark"] .tier-rank-cell {
+  border-right-color: rgba(237, 228, 255, .16);
+}
+.tier-board-header {
+  min-height: 72px;
+  padding: 0 10px;
+  border: 1px solid rgba(111, 95, 152, .14);
+  border-radius: 0;
+  background: rgba(255, 255, 255, .55);
+  box-shadow: 0 10px 27px rgba(57, 43, 87, .025);
+}
+.tier-page[data-theme="dark"] .tier-board-header {
+  border-color: rgba(237, 228, 255, .11);
+  background: rgba(42, 38, 52, .68);
+  box-shadow: 0 10px 27px rgba(0, 0, 0, .08);
+}
+.tier-board-header .tier-role-heading {
+  border-radius: 0;
+  border-left: 1px solid var(--line);
+}
+.tier-board-header .tier-role-heading + .tier-role-heading { border-left: 1px solid var(--line); }
+.tier-row-shell { border-radius: 0; }
+.tier-rank-cell,
+.tier-drop-cell,
+.tier-character-card,
+.tier-character-image { border-radius: 0; }
+
+@media (max-width: 620px) {
+  .tier-board-header,
+  .tier-row-shell {
+    grid-template-columns: 66px repeat(3, minmax(0, 1fr));
+    column-gap: 12px;
+  }
+  .tier-board-header { padding: 0 7px; }
+}
+
+/* Keep the rank as its own tile so the gutter is as visible as the row spacing. */
+.tier-board-header {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  column-gap: 12px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.tier-grid-heading {
+  justify-content: center;
+  min-height: 72px;
+  padding: 0 10px;
+  border: 1px solid rgba(111, 95, 152, .14);
+  background: rgba(255, 255, 255, .55);
+}
+.tier-page[data-theme="dark"] .tier-grid-heading {
+  border-color: rgba(237, 228, 255, .11);
+  background: rgba(42, 38, 52, .68);
+}
+.tier-role-headings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid rgba(111, 95, 152, .14);
+  background: rgba(255, 255, 255, .55);
+}
+.tier-page[data-theme="dark"] .tier-role-headings {
+  border-color: rgba(237, 228, 255, .11);
+  background: rgba(42, 38, 52, .68);
+}
+.tier-board-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  column-gap: 12px;
+  min-width: 0;
+  align-items: stretch;
+}
+.tier-board-row .tier-rank-cell {
+  min-height: 132px;
+  margin: 0;
+  border: 1px solid rgba(111, 95, 152, .12);
+  border-right: 0;
+  background: rgba(255, 255, 255, .55);
+}
+.tier-page[data-theme="dark"] .tier-board-row .tier-rank-cell {
+  border-color: rgba(237, 228, 255, .11);
+  background: rgba(42, 38, 52, .68);
+}
+.tier-board-row .tier-row-shell {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 0;
+  min-height: 132px;
+}
+.tier-drop-cell { border-radius: 0; }
+
+@media (max-width: 620px) {
+  .tier-board-header,
+  .tier-board-row { grid-template-columns: 66px minmax(0, 1fr); column-gap: 10px; }
+  .tier-role-headings { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.character-element-icon {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  z-index: 2;
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 50%;
+  background: rgba(37, 31, 48, .93);
+  box-shadow: 0 2px 8px rgba(25, 20, 37, .24);
+  backdrop-filter: blur(6px);
+}
+.character-element-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.tier-page[data-theme="dark"] .character-element-icon {
+  border-color: rgba(255, 255, 255, .26);
+  background: rgba(37, 31, 48, .93);
+}
+@media (max-width: 620px) {
+  .character-element-icon { right: 4px; bottom: 4px; width: 22px; height: 22px; }
+}
+
+/* Make the rank tiles the main visual cue for each tier. */
+.tier-board-row .tier-rank-cell .tier-rank-label {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+}
+.tier-board-row.rank-ss .tier-rank-cell .tier-rank-label { color: #3a2a12 !important; }
+.tier-board-row.rank-s .tier-rank-cell .tier-rank-label { color: #27183a !important; }
+.tier-board-row.rank-aplus .tier-rank-cell .tier-rank-label { color: #1b244b !important; }
+.tier-board-row.rank-a .tier-rank-cell .tier-rank-label { color: #123744 !important; }
+.tier-board-row.rank-b .tier-rank-cell .tier-rank-label { color: #203619 !important; }
+.tier-board-row.rank-c .tier-rank-cell .tier-rank-label { color: #45300e !important; }
+.tier-board-row.rank-d .tier-rank-cell .tier-rank-label { color: #461c20 !important; }
+.tier-board-row.rank-ss .tier-rank-cell { background: #f0d58b !important; }
+.tier-board-row.rank-s .tier-rank-cell { background: #d9c6f3 !important; }
+.tier-board-row.rank-aplus .tier-rank-cell { background: #cbd4f3 !important; }
+.tier-board-row.rank-a .tier-rank-cell { background: #c8e0e8 !important; }
+.tier-board-row.rank-b .tier-rank-cell { background: #d1e3ca !important; }
+.tier-board-row.rank-c .tier-rank-cell { background: #ede0b7 !important; }
+.tier-board-row.rank-d .tier-rank-cell { background: #eccbc5 !important; }
+@media (max-width: 620px) {
+  .tier-board-row .tier-rank-cell .tier-rank-label { font-size: 15px; }
+}
+
+.roster-character-card { border-radius: 10px; }
+.roster-portrait { border-radius: 9px; }
+.roster-character-card .constellation-label { border-radius: 5px; }
+.tier-character-card,
+.tier-character-image { border-radius: 0; }
+.tier-character-image .constellation-label { border-radius: 5px; }

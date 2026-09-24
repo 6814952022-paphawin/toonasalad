@@ -1,7 +1,7 @@
 import content from '../data/content.js';
 
 // แสดงชื่อหน้ารายละเอียดและปุ่มกลับสู่หน้าแรก
-function WishDashboardHeader({ onBack, user, onAuth, onLogout }) {
+function WishDashboardHeader({ onBack, user, onAuth, onLogout, theme, onToggleTheme }) {
   const dashboard = content.wishDashboard;
 
   return (
@@ -13,11 +13,8 @@ function WishDashboardHeader({ onBack, user, onAuth, onLogout }) {
         <p className="dashboard-eyebrow">{dashboard.eyebrow}</p>
         <h1>{dashboard.title}</h1>
       </div>
-      <div className="dashboard-tools" aria-hidden="true">
-        <span className="dashboard-tool">{dashboard.autoImport}</span>
-        <span className="dashboard-tool">{dashboard.settings}</span>
-      </div>
       <div className="wish-auth-actions">
+        <button type="button" className="dashboard-theme-toggle" onClick={onToggleTheme} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>{theme === 'light' ? '☾ Dark' : '☼ Light'}</button>
         {user ? <><span className="wish-auth-email">{user.email}</span><button type="button" className="wish-auth-button" onClick={onLogout}>Log out</button></> : <><button type="button" className="wish-auth-button" onClick={() => onAuth('login')}>Log in</button><button type="button" className="wish-auth-button wish-auth-primary" onClick={() => onAuth('register')}>Sign up</button></>}
       </div>
     </header>

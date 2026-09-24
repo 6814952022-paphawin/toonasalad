@@ -1,0 +1,37 @@
+[
+  {
+    "id": "anemo",
+    "name": "Anemo",
+    "icon": "/images/elements/anemo.webp"
+  },
+  {
+    "id": "cryo",
+    "name": "Cryo",
+    "icon": "/images/elements/cryo.webp"
+  },
+  {
+    "id": "dendro",
+    "name": "Dendro",
+    "icon": "/images/elements/dendro.webp"
+  },
+  {
+    "id": "electro",
+    "name": "Electro",
+    "icon": "/images/elements/electro.webp"
+  },
+  {
+    "id": "geo",
+    "name": "Geo",
+    "icon": "/images/elements/geo.webp"
+  },
+  {
+    "id": "hydro",
+    "name": "Hydro",
+    "icon": "/images/elements/hydro.webp"
+  },
+  {
+    "id": "pyro",
+    "name": "Pyro",
+    "icon": "/images/elements/pyro.webp"
+  }
+]

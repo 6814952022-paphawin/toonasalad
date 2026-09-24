@@ -1,11 +1,21 @@
 {
   "name": "toona-salad",
   "private": true,
-  "engines": { "node": ">=22" },
-  "workspaces": ["client", "server"],
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "build": "npm run build --workspace client",
     "test": "npm test --workspace server",
-    "dev": "npm run dev --workspace server"
+    "dev": "npm run dev --workspace server",
+    "fetch:characters": "node scripts/fetch-characters.mjs",
+    "fetch:elements": "node scripts/fetch-elements.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }
