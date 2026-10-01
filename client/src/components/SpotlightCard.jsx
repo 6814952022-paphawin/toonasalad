@@ -10,11 +10,11 @@ const boxSelector = [
   '.wish-chart-card', '.wish-rank-card', '.wish-rank-row', '.breakdown-card',
   '.breakdown-footer-card', '.wish-records-card', '.wish-tools-card', '.dashboard-tool',
   '.wish-item-chips span', '.wish-auth-dialog', '.wish-auth-close', '.wish-auth-switch',
-  '.wish-entry-form label', '.wish-filter', '.roster-count-label', '.roster-assigned-mark',
+  '.wish-entry-form label', '.wish-filter', '.roster-assigned-mark',
   '.wish-record-table tbody tr', '.tier-hero-meta', '.tier-board-header', '.tier-grid-heading',
   '.tier-role-headings', '.tier-role-heading', '.tier-rank-cell', '.tier-row-shell',
-  '.tier-drop-cell', '.tier-drop-hint', '.tier-character-image', '.roster-character-card',
-  '.roster-search', '.element-filter', '.roster-portrait', '.roster-empty',
+  '.tier-drop-cell', '.tier-character-image', '.roster-character-card',
+  '.roster-search', '.roster-portrait', '.roster-empty',
 ];
 
 export const spotlightBoxSelector = boxSelector.join(', ');
@@ -29,10 +29,14 @@ const SpotlightCard = ({
 
   const handleMouseMove = (event) => {
     const root = divRef.current;
-    const spotlightOptOut = event.target.closest('.feature-link, .button-text');
+    const spotlightOptOut = event.target.closest(
+      '.feature-link, .button-text, .tier-drop-hint, .element-filter, .roster-count-label, .nav-page-link, .tier-topbar .main-nav .nav-active',
+    );
     if (spotlightOptOut) {
-      root?.querySelectorAll('.feature-card.card-spotlight-target').forEach((card) => {
-        card.classList.remove('card-spotlight-target');
+      root?.querySelectorAll(
+        '.feature-card.card-spotlight-target, .tier-drop-cell.card-spotlight-target, .topbar.card-spotlight-target, .nav-page-link.card-spotlight-target',
+      ).forEach((target) => {
+        target.classList.remove('card-spotlight-target');
       });
       return;
     }

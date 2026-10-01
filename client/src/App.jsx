@@ -24,7 +24,7 @@ function App() {
   const spotlightColor = theme === 'dark' ? 'rgba(185, 168, 242, 0.22)' : 'rgba(121, 103, 201, 0.15)';
   const spotlightLayer = { className: 'spotlight-page-layer', spotlightSelector: spotlightBoxSelector, spotlightColor };
   if (showWishDetails) return <SpotlightCard {...spotlightLayer}><WishDetailsPage theme={theme} initialAuthMode={wishAuthMode} onToggleTheme={() => setTheme(theme === 'light' ? 'dark' : 'light')} onBack={() => { setWishAuthMode(''); setShowWishDetails(false); }} /></SpotlightCard>;
-  if (showTierList) return <SpotlightCard {...spotlightLayer}><TierListPage theme={theme} onToggleTheme={() => setTheme(theme === 'light' ? 'dark' : 'light')} onBack={() => setShowTierList(false)} /></SpotlightCard>;
+  if (showTierList) return <SpotlightCard {...spotlightLayer}><TierListPage theme={theme} onToggleTheme={() => setTheme(theme === 'light' ? 'dark' : 'light')} onBack={() => setShowTierList(false)} onLogin={() => { setWishAuthMode('login'); setShowTierList(false); setShowWishDetails(true); }} onSignup={() => { setWishAuthMode('register'); setShowTierList(false); setShowWishDetails(true); }} /></SpotlightCard>;
 
   return (
     <SpotlightCard {...spotlightLayer}>
@@ -34,7 +34,7 @@ function App() {
       <header className="topbar">
         <a className="brand" href="#home" aria-label="Flins home"><span className="brand-mark">✳</span> flins<span className="brand-dot">.</span></a>
         <nav className="main-nav" aria-label="Main navigation">
-          <a className="nav-active" href="#home">Discover</a><a href="#features">Features</a><a href="#characters">Characters</a><button className="nav-page-link" type="button" onClick={() => setShowTierList(true)}>Tier list</button>
+          <a className="nav-active" href="#home">Discover</a><a href="#features">Features</a><button className="nav-page-link" type="button" onClick={() => { setWishAuthMode(''); setShowWishDetails(true); }}>Wish Counter</button><button className="nav-page-link" type="button" onClick={() => setShowTierList(true)}>Tier list</button>
         </nav>
         <div className="topbar-actions">
           <button className="theme-toggle" type="button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>

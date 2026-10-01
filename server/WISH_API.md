@@ -1,10 +1,10 @@
-﻿# Wish history API
+# Wish history API
 
 Wish history is scoped by the client generated `x-player-id` value. This is an anonymous prototype identity, not an account or authentication system.
 
 ## `GET /api/wishes`
 
-Requires `x-player-id`. Returns `totalPulls` and a `banners` object keyed by `character`, `weapon`, `standard`, `novice`, and `chronicled`. Each banner contains `totalPulls`, current `fivePity` and `fourPity`, last 4â˜…/5â˜… records, and newest-first `wishes`.
+Requires `x-player-id`. Returns `totalPulls` and a `banners` object keyed by `character`, `weapon`, `standard`, `novice`, and `chronicled`. Each banner contains `totalPulls`, current `fivePity` and `fourPity`, last 4★/5★ records, and newest-first `wishes`.
 
 ## `POST /api/wishes`
 

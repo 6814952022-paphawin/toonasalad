@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import characters from '../data/characters.json';
 import elements from '../data/elements.json';
+import WishDashboardHeader from './WishDashboardHeader.jsx';
 
 const ranks = ['SS', 'S', 'A+', 'A', 'B', 'C', 'D'];
 const roles = [
@@ -14,8 +15,9 @@ function loadPlacements() {
   try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch { return {}; }
 }
 
-function TierListPage({ theme, onToggleTheme, onBack }) {
+function TierListPage({ theme, onToggleTheme, onBack, onLogin, onSignup }) {
   const [placements, setPlacements] = useState(loadPlacements);
+  const [authUser, setAuthUser] = useState(() => { try { return JSON.parse(localStorage.getItem('wish-auth-user') || 'null'); } catch { return null; } });
   const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState('');
   const [elementFilter, setElementFilter] = useState('All');
@@ -56,11 +58,7 @@ function TierListPage({ theme, onToggleTheme, onBack }) {
     <main className="landing-page tier-page" data-theme={theme}>
       <div className="ambient ambient-one" aria-hidden="true" />
       <div className="ambient ambient-two" aria-hidden="true" />
-      <header className="topbar tier-topbar">
-        <button className="brand tier-brand" type="button" onClick={onBack} aria-label="Back to Flins home"><span className="brand-mark">✳</span> flins<span className="brand-dot">.</span></button>
-        <nav className="main-nav" aria-label="Main navigation"><button type="button" onClick={onBack}>Home</button><a href="#tier-board" className="nav-active">Tier list</a><a href="#character-roster">Characters</a></nav>
-        <div className="topbar-actions"><button className="theme-toggle" type="button" onClick={onToggleTheme}><span aria-hidden="true">{theme === 'light' ? '☾' : '☼'}</span><span className="theme-toggle-label">{theme === 'light' ? 'Dark' : 'Light'}</span></button><button className="profile-button" type="button" onClick={onBack}>← Home</button></div>
-      </header>
+      <div className="tier-dashboard-header"><WishDashboardHeader onBack={onBack} theme={theme} onToggleTheme={onToggleTheme} user={authUser} onAuth={(mode) => mode === 'login' ? onLogin() : onSignup()} onLogout={() => { localStorage.removeItem('wish-auth-token'); localStorage.removeItem('wish-auth-user'); setAuthUser(null); }} title="Character Tier List" eyebrow="YOUR PERSONAL RANKINGS" backLabel="Back to home" /></div>
 
       <section className="tier-hero">
         <div className="eyebrow"><span className="eyebrow-line" /> Find your next favourite</div>
