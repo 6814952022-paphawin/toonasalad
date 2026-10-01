@@ -1,4 +1,4 @@
-﻿const WishHistory = require("../models/wish.model");
+const WishHistory = require("../models/wish.model");
 const { readToken } = require("./user.controller");
 
 // "novice" was documented in WISH_API.md but missing here and in the model enum.
@@ -194,4 +194,3 @@ async function importFromUrl(req, res, next) {
 }
 
 module.exports = { getHistory, addWishes, importFromUrl, normalizeWish, summarize };
-
