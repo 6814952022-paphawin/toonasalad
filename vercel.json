@@ -5,6 +5,9 @@
   "functions": {
     "api/[...path].js": {
       "includeFiles": "server/src/**"
+    },
+    "api/auth/*.js": {
+      "includeFiles": "server/src/**"
     }
   }
 }
